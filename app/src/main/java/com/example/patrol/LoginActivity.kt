@@ -1,7 +1,10 @@
 package com.example.patrol
 
+import android.R
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -22,8 +25,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.patrol.model.Route
 import com.example.patrol.model.User
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import okhttp3.Call
 import okhttp3.Callback
@@ -40,6 +44,28 @@ class LoginActivity : ComponentActivity() {
     //Intialize attributes
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener(OnCompleteListener<String?> { task ->
+                if (!task.isSuccessful) {
+                    return@OnCompleteListener
+                }
+
+                // Get new FCM registration token
+                val token = task.result
+
+                // Log and toast
+                Log.d("LoginActivity", token)
+                Toast.makeText(this, token, Toast.LENGTH_SHORT).show()
+            })
+        FirebaseMessaging.getInstance().subscribeToTopic("all")
+            .addOnCompleteListener { task ->
+                var msg = "Subscribed"
+                if (!task.isSuccessful) {
+                    msg = "Subscribe failed"
+                }
+                Log.d("LoginActivity", msg!!)
+                Toast.makeText(this@LoginActivity, msg, Toast.LENGTH_SHORT).show()
+            }
 
         val pref = getSharedPreferences("User", MODE_PRIVATE)
         pref.getString("name", null)?.let {

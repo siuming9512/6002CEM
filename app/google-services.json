@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "42460037848",
+    "project_id": "patrol-4f685",
+    "storage_bucket": "patrol-4f685.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42460037848:android:6ddda56cd5cca909e2cdad",
+        "android_client_info": {
+          "package_name": "com.example.patrol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42460037848-prcp1pisd3ndrhuibdsqclbmajjm98vn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACB40uLSDX0bvfsbKO8oxm8PW9J5Vz37o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42460037848-prcp1pisd3ndrhuibdsqclbmajjm98vn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
